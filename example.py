@@ -1,6 +1,5 @@
 import asyncio
 import danmaku
-import sys
 
 
 async def printer(q):
@@ -11,9 +10,9 @@ async def printer(q):
 
 async def main():
     q = asyncio.Queue()
-    dmc = danmaku.DanmakuClient(sys.argv[1], q)
-    asyncio.create_task(printer(q))
+    dmc = danmaku.DanmakuClient("https://douyu.com/475252", q)
+    asyncio.get_event_loop().create_task(printer(q))
     await dmc.start()
 
 
-asyncio.run(main())
+asyncio.get_event_loop().run_until_complete(main())
